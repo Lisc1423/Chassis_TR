@@ -136,7 +136,7 @@ int main(void)
   motor_init();
   laser_init();
   lcd_init();
-  test_flag0 = 1;
+  test_flag0 = 0;
   flag.main_flag = 1;
   /* USER CODE END 2 */
 
@@ -146,18 +146,18 @@ int main(void)
   {
 
     simplelib_run();
-    clock_exe();       //时钟
-    lcd_exe();         //lcd消息�?
-    gpio_sensor_exe(); //IO口外部设
-    m2006_exe();       //大疆电机
-    vsec_exe();
-    kickball_exe();  //踢球系统
-    touchdown_exe(); //达阵装置
-    laser_exe();
-    if(test_flag0 == 1) {
-      test_flag0 = 0;
-      chassis_canset_motorspeed(test_value[0],test_value[1],test_value[2]);
-    }
+    // clock_exe();       //时钟
+    // lcd_exe();         //lcd消息
+    // gpio_sensor_exe(); //IO口外部设
+    // m2006_exe();       //大疆电机
+    // vsec_exe();       //本杰明电机
+    // kickball_exe();  //踢球系统
+    // touchdown_exe(); //达阵装置
+    // laser_exe();
+    // if(test_flag0 == 1) {
+    //   test_flag0 = 0;
+    //   chassis_canset_motorspeed(test_value[0],test_value[1],test_value[2]);
+    // }
 
      
 
@@ -231,20 +231,16 @@ void inc(void)
     //20ms
     if (time_1ms_cnt % 20 == 0)
     {
-flag.lcd_flag = 1;
-      
+      flag.lcd_flag = 1;      
     }
     if (time_1ms_cnt % 10 == 0)
     {
-
       clock.m_sec++;
     }
 
     //5ms
     if (time_1ms_cnt % 5 == 0)
     {
-      
-      test_flag0 = 1;
       if (chassis_status.vega_is_ready == 1)
       {
         flag.chassis_control_flag = 1;

@@ -91,3 +91,13 @@ void vega_print_pos(){
   else{
       uprintf("vega has not inited\r\n");} 
 }
+
+void vega_print_pos_can(){
+  can_msg angle_msg;
+  angle_msg.fl[0]=chassis.vega_angle;
+  can_send_msg(11,&angle_msg);
+  can_msg xy_msg;
+  xy_msg.fl[0]=chassis.vega_pos_x;
+  xy_msg.fl[1]=chassis.vega_pos_y;
+  can_send_msg(22,&xy_msg);
+}
